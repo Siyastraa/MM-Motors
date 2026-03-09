@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MM Motors | Premium Automotive Excellence</title>
+    <meta name="description" content="MM Motors — Discover the finest selection of premium vehicles and world-class maintenance services. Luxury redefined for the modern driver.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="MM Motors" class="logo-img" style="height: 40px; width: auto;">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="inventory.html" class="nav-link">Inventory</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="search-box" id="searchBox">
+                    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <input type="text" placeholder="Search inventory..." class="search-input" id="searchInput">
+                </div>
+                <a href="inquiry.html" class="btn btn-primary nav-cta">Book Appointment</a>
+                <a href="login.html" class="btn btn-outline nav-cta">Login / Register</a>
+                <a href="login.html?role=staff" class="btn nav-cta nav-staff-btn">Staff Portal</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO WITH VIDEO ===== -->
+    <section class="hero" id="home">
+        <div class="hero-video-bg">
+            <video autoplay muted loop playsinline id="heroVideo">
+                <source src="https://cdn.pixabay.com/video/2024/02/08/199870-910941282_large.mp4" type="video/mp4">
+            </video>
+            <div class="hero-video-overlay"></div>
+        </div>
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge animate-on-scroll">
+                    <span class="badge-dot"></span>
+                    EST. 2018 • PREMIUM COLLECTION
+                </div>
+                <h1 class="hero-title animate-on-scroll">
+                    Experience<br>
+                    <em class="hero-italic">Automotive</em><br>
+                    Excellence
+                </h1>
+                <p class="hero-subtitle animate-on-scroll">Discover the finest selection of premium vehicles and world-class maintenance services at MM Motors. Luxury redefined for the modern South African driver.</p>
+                <div class="hero-actions animate-on-scroll">
+                    <a href="inventory.html" class="btn btn-primary btn-lg">
+                        Browse Inventory
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="services.html" class="btn btn-outline btn-lg">
+                        Book Service
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image animate-on-scroll">
+                <img src="images/hero-car.png" alt="Premium luxury sports car" />
+                <div class="hero-rating">
+                    <div class="rating-score">4.9<span>/5</span></div>
+                    <div class="rating-stars">★★★★★</div>
+                    <div class="rating-text">Customer Ratings</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURED INVENTORY (Preview) ===== -->
+    <section class="inventory section" id="inventory">
+        <div class="container">
+            <div class="inventory-header">
+                <div>
+                    <h2 class="section-title animate-on-scroll">Featured Inventory</h2>
+                    <p class="section-subtitle animate-on-scroll">Hand-picked premium selections of the month</p>
+                </div>
+                <a href="inventory.html" class="view-all animate-on-scroll">View All <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+            <div class="inventory-grid">
+                <div class="car-card animate-on-scroll" id="car-1">
+                    <div class="car-image-wrapper">
+                        <img src="images/car-sedan.png" alt="2024 Mercedes-Benz C-Class" />
+                        <span class="car-badge">New Arrival</span>
+                    </div>
+                    <div class="car-info">
+                        <div class="car-header">
+                            <div>
+                                <h3 class="car-name">2024 Mercedes-Benz C-Class</h3>
+                                <p class="car-tags">Luxury · Comfort · Performance</p>
+                            </div>
+                            <span class="car-price">POA</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="spec-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+                                <div><span class="spec-label">Engine</span><span class="spec-value">3.0L V6</span></div>
+                            </div>
+                            <div class="spec-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+                                <div><span class="spec-label">Fuel</span><span class="spec-value">Hybrid</span></div>
+                            </div>
+                            <div class="spec-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                                <div><span class="spec-label">HP</span><span class="spec-value">430 hp</span></div>
+                            </div>
+                        </div>
+                        <a href="inventory.html" class="btn btn-car-details">View Details</a>
+                    </div>
+                </div>
+                <div class="car-card animate-on-scroll" id="car-2">
+                    <div class="car-image-wrapper">
+                        <img src="images/car-suv.png" alt="2024 Range Rover Sport" />
+                    </div>
+                    <div class="car-info">
+                        <div class="car-header">
+                            <div>
+                                <h3 class="car-name">2024 Range Rover Sport</h3>
+                                <p class="car-tags">All-Terrain · Spacious · Sleek</p>
+                            </div>
+                            <span class="car-price">POA</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="spec-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+                                <div><span class="spec-label">Engine</span><span class="spec-value">V6 Twin</span></div>
+                            </div>
+                            <div class="spec-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+                                <div><span class="spec-label">Fuel</span><span class="spec-value">Petrol</span></div>
+                            </div>
+                            <div class="spec-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                                <div><span class="spec-label">HP</span><span class="spec-value">380 hp</span></div>
+                            </div>
+                        </div>
+                        <a href="inventory.html" class="btn btn-car-details">View Details</a>
+                    </div>
+                </div>
+                <div class="car-card animate-on-scroll" id="car-3">
+                    <div class="car-image-wrapper">
+                        <img src="images/car-sports.png" alt="2024 BMW M4 Competition" />
+                    </div>
+                    <div class="car-info">
+                        <div class="car-header">
+                            <div>
+                                <h3 class="car-name">2024 BMW M4 Competition</h3>
+                                <p class="car-tags">Aerodynamic · Fast · Precise</p>
+                            </div>
+                            <span class="car-price">POA</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="spec-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+                                <div><span class="spec-label">Engine</span><span class="spec-value">4.0L V8</span></div>
+                            </div>
+                            <div class="spec-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+                                <div><span class="spec-label">Fuel</span><span class="spec-value">Petrol</span></div>
+                            </div>
+                            <div class="spec-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                                <div><span class="spec-label">HP</span><span class="spec-value">620 hp</span></div>
+                            </div>
+                        </div>
+                        <a href="inventory.html" class="btn btn-car-details">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY CHOOSE (Brief) ===== -->
+    <section class="why-choose section">
+        <div class="container">
+            <div class="why-choose-header">
+                <h2 class="section-title animate-on-scroll">Why Choose MM Motors?</h2>
+                <p class="section-subtitle animate-on-scroll">We've built our reputation on transparency, reliability, and an unwavering commitment to automotive perfection.</p>
+            </div>
+            <div class="why-choose-divider animate-on-scroll"></div>
+            <div class="trust-grid">
+                <div class="trust-item animate-on-scroll">
+                    <div class="trust-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <h3>Premium Quality</h3>
+                    <p>Every vehicle in our inventory goes through a rigorous 200-point certification for reliable driving.</p>
+                </div>
+                <div class="trust-item animate-on-scroll">
+                    <div class="trust-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3>Fair Pricing</h3>
+                    <p>Competitive, no-haggle market pricing with flexible financing options for all customers.</p>
+                </div>
+                <div class="trust-item animate-on-scroll">
+                    <div class="trust-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our concierge service is available around the clock for any emergency maintenance needs.</p>
+                </div>
+                <div class="trust-item animate-on-scroll">
+                    <div class="trust-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <h3>Expert Trust</h3>
+                    <p>Over 7 years of experience serving the premium automotive market in Gauteng and beyond.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo footer-logo">
+                        <img src="images/logo.png" alt="MM Motors" class="logo-img" style="height: 36px; width: auto;">
+                    </a>
+                    <p>Elevating your driving experience since 2018. The preferred choice for luxury car owners and collectors in South Africa.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                        <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                        <a href="#" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="inventory.html">Latest Inventory</a></li>
+                        <li><a href="services.html">Special Offers</a></li>
+                        <li><a href="services.html">Parts Department</a></li>
+                        <li><a href="about.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <div class="footer-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span>Location to be communicated</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <span>+27 (011) 492 3400</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <span class="email-link">info@mmmotors.co.za</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MM Motors. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Settings</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

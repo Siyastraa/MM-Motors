@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | MM Motors</title>
+    <meta name="description" content="Login or register for your MM Motors account. Staff members can access the employee portal.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="MM Motors" class="logo-img" style="height: 40px; width: auto;">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="inventory.html" class="nav-link">Inventory</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="search-box" id="searchBox">
+                    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <input type="text" placeholder="Search inventory..." class="search-input" id="searchInput">
+                </div>
+                <a href="inquiry.html" class="btn btn-primary nav-cta">Book Appointment</a>
+                <a href="login.html" class="btn btn-outline nav-cta">Login / Register</a>
+                <a href="login.html?role=staff" class="btn nav-cta nav-staff-btn">Staff Portal</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="page-header" style="padding-bottom: 20px;">
+        <div class="container">
+            <div class="page-header-content animate-on-scroll">
+                <span class="page-breadcrumb">Home / Account</span>
+                <h1 class="page-title" id="pageTitle">Welcome <em class="hero-italic">Back</em></h1>
+                <p class="page-subtitle" id="pageSubtitle">Sign in to your account or create a new one to get started.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 20px;">
+        <div class="container">
+            <div class="auth-container">
+                <!-- Tab Switcher -->
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login" id="tabLogin">Sign In</button>
+                    <button class="auth-tab" data-tab="register" id="tabRegister">Register</button>
+                    <button class="auth-tab staff-tab" data-tab="staff" id="tabStaff">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Staff Login
+                    </button>
+                </div>
+
+                <!-- LOGIN FORM -->
+                <form class="auth-form active" id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-row" style="justify-content: space-between; align-items: center;">
+                        <label class="checkbox-label"><input type="checkbox" id="rememberMe"> Remember me</label>
+                        <a href="#" class="form-link">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; justify-content: center; margin-top: 12px;">Sign In</button>
+                    <p class="auth-switch">Don't have an account? <a href="#" onclick="switchTab('register')">Register here</a></p>
+                </form>
+
+                <!-- REGISTER FORM -->
+                <form class="auth-form" id="registerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regFirstName">First Name</label>
+                            <input type="text" id="regFirstName" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regLastName">Last Name</label>
+                            <input type="text" id="regLastName" placeholder="Smith" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Email Address</label>
+                        <input type="email" id="regEmail" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPhone">Phone Number</label>
+                        <input type="tel" id="regPhone" placeholder="e.g. (011) 555 1234" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regPassword">Password</label>
+                            <input type="password" id="regPassword" placeholder="Min. 6 characters" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regConfirm">Confirm Password</label>
+                            <input type="password" id="regConfirm" placeholder="Re-enter password" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; justify-content: center; margin-top: 12px;">Create Account</button>
+                    <p class="auth-switch">Already have an account? <a href="#" onclick="switchTab('login')">Sign in</a></p>
+                </form>
+
+                <!-- STAFF LOGIN FORM -->
+                <form class="auth-form" id="staffForm">
+                    <div class="staff-notice">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <div>
+                            <strong>Employee Access Only</strong>
+                            <p>This portal is restricted to authorised MM Motors staff members.</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="staffId">Staff ID</label>
+                        <input type="text" id="staffId" placeholder="e.g. MM-001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staffPassword">Password</label>
+                        <input type="password" id="staffPassword" placeholder="Enter staff password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; justify-content: center; margin-top: 12px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Access Staff Portal
+                    </button>
+                    <p class="auth-switch" style="margin-top:16px; font-size: 0.78rem; color: var(--text-muted);">Default credentials: Staff ID <strong>admin</strong> · Password <strong>admin</strong></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom"><p>&copy; 2026 MM Motors. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

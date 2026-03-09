@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | MM Motors</title>
+    <meta name="description" content="Get in touch with MM Motors. Book a service, inquire about a vehicle, or visit our showroom.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
+    <style>
+    /* Premium Inquiry Page Styles */
+    .contact-wrapper {
+        position: relative;
+        background: radial-gradient(circle at 85% 50%, rgba(20, 25, 35, 0.6) 0%, #07080a 50%);
+        overflow: hidden;
+        padding-bottom: 80px;
+    }
+    .contact-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)"/></svg>');
+        opacity: 0.02;
+        pointer-events: none;
+        z-index: 1;
+    }
+    .premium-card {
+        background: rgba(18, 20, 26, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        padding: 48px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+        position: relative;
+        z-index: 2;
+        transition: all 0.4s ease;
+    }
+    .premium-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255,255,255,0.15);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 30px rgba(255,255,255,0.03);
+    }
+    .contact-methods {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-bottom: 40px;
+    }
+    .contact-method-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .premium-contact-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(201, 169, 110, 0.15), rgba(201, 169, 110, 0.05));
+        border: 1px solid rgba(201, 169, 110, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        margin-bottom: 16px;
+        transition: all 0.4s ease;
+        box-shadow: 0 4px 15px rgba(201, 169, 110, 0.1);
+    }
+    .premium-card:hover .premium-contact-icon {
+        background: linear-gradient(135deg, rgba(201, 169, 110, 0.25), rgba(201, 169, 110, 0.1));
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(201, 169, 110, 0.2);
+    }
+    .contact-detail-title {
+        font-family: 'SF Mono', 'Consolas', monospace;
+        font-size: 0.65rem;
+        color: rgba(255,255,255,0.4);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 8px;
+    }
+    .contact-detail-text {
+        font-size: 0.95rem;
+        font-weight: 300;
+        color: #fff;
+        line-height: 1.6;
+    }
+    .contact-detail-text.gold-text {
+        color: var(--gold);
+        font-weight: 400;
+    }
+    .premium-form-group {
+        margin-bottom: 24px;
+    }
+    .premium-form-group label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.5);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .premium-form-group input, 
+    .premium-form-group select, 
+    .premium-form-group textarea {
+        width: 100%;
+        padding: 16px;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        color: #ffffff;
+        font-family: var(--font-body);
+        font-size: 0.9rem;
+        outline: none;
+        transition: all 0.3s ease;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+    }
+    .premium-form-group input:focus, 
+    .premium-form-group select:focus, 
+    .premium-form-group textarea:focus {
+        border-color: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.03);
+        box-shadow: 0 0 15px rgba(255,255,255,0.05), inset 0 2px 4px rgba(0,0,0,0.5);
+    }
+    .premium-form-group select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 16px center;
+    }
+    .submit-btn-premium {
+        background: linear-gradient(135deg, rgba(201, 169, 110, 0.15), rgba(201, 169, 110, 0.05));
+        border: 1px solid rgba(201, 169, 110, 0.3);
+        color: var(--gold) !important;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 4px 15px rgba(201, 169, 110, 0.1);
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+    .submit-btn-premium:hover {
+        background: linear-gradient(135deg, rgba(201, 169, 110, 0.25), rgba(201, 169, 110, 0.1));
+        border-color: rgba(201, 169, 110, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(201, 169, 110, 0.2);
+    }
+    @media (max-width: 768px) {
+        .contact-methods { grid-template-columns: 1fr; gap: 24px; }
+        .premium-card { padding: 32px 24px; }
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="images/logo.png" alt="MM Motors" class="logo-img" style="height: 40px; width: auto;"></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="search-box"><svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" placeholder="Search..." class="search-input" id="searchInput"></div>
+                <a href="inquiry.html" class="btn btn-primary nav-cta">Book Appointment</a>
+                <a href="login.html" class="btn btn-outline nav-cta">Login / Register</a>
+                <a href="login.html?role=staff" class="btn nav-cta nav-staff-btn">Staff Portal</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="page-header" style="padding-bottom: 20px;">
+        <div class="container">
+            <div class="page-header-content animate-on-scroll">
+                <span class="page-breadcrumb">Home / Contact</span>
+                <h1 class="page-title">Find <em class="hero-italic">Us</em></h1>
+                <p class="page-subtitle">Visit our flagship showroom or dial our concierge for immediate assistance. We're here to elevate your journey.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="contact-wrapper">
+        <section class="section" style="position: relative; z-index: 2; padding-top: 20px;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div class="premium-card animate-on-scroll" style="padding: 48px; text-align: center;">
+                        <h2 class="section-title" style="margin-bottom: 16px; font-size: 2.2rem; letter-spacing: -0.5px;">Contact <em class="hero-italic">Details</em></h2>
+                        <p style="color: rgba(255,255,255,0.6); font-size: 1.05rem; margin-bottom: 48px; line-height: 1.8; font-weight: 300;">Experience dedicated concierge service. Connect with our experts today.</p>
+                        <div class="contact-methods">
+                            <div class="contact-method-item" style="align-items: center; text-align: center;">
+                                <div class="premium-contact-icon" style="margin: 0 auto 16px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                                <div class="contact-detail-title">Showroom</div>
+                                <div class="contact-detail-text">Location to be communicated</div>
+                            </div>
+                            <div class="contact-method-item" style="align-items: center; text-align: center;">
+                                <div class="premium-contact-icon" style="margin: 0 auto 16px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                                <div class="contact-detail-title">Direct Line</div>
+                                <div class="contact-detail-text">+27 (011) 492 3400</div>
+                            </div>
+                            <div class="contact-method-item" style="align-items: center; text-align: center;">
+                                <div class="premium-contact-icon" style="margin: 0 auto 16px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                                <div class="contact-detail-title">Electronic Mail</div>
+                                <div class="contact-detail-text gold-text">info@mmmotors.co.za</div>
+                            </div>
+                            <div class="contact-method-item" style="align-items: center; text-align: center;">
+                                <div class="premium-contact-icon" style="margin: 0 auto 16px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                                <div class="contact-detail-title">Concierge Hours</div>
+                                <div class="contact-detail-text">Mon–Fri: 7:30 – 17:30<br>Sat: 8:00 – 13:00</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08);">
+                            <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 16px;">Looking to book a service or request a vehicle?</p>
+                            <a href="inquiry.html" class="btn btn-primary nav-cta" style="padding: 14px 32px; font-size: 0.85rem;">Submit an Inquiry</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand"><a href="index.html" class="logo footer-logo"><img src="images/logo.png" alt="MM Motors" class="logo-img" style="height: 36px; width: auto;"></a><p>Elevating your driving experience since 2018.</p></div>
+                <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="inventory.html">Inventory</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li></ul></div>
+                <div class="footer-contact"><h4>Contact Us</h4><div class="footer-contact-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Location to be communicated</span></div><div class="footer-contact-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>+27 (011) 492 3400</span></div></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 MM Motors. All rights reserved.</p><div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

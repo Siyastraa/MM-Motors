@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard | MM Motors</title>
+    <meta name="description" content="MM Motors staff portal. Manage vehicles, generate invoices, and book services.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <!-- DASHBOARD NAV -->
+    <nav class="navbar scrolled" id="navbar" style="position: fixed;">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="MM Motors" class="logo-img" style="height: 40px; width: auto;">
+            </a>
+            <div style="display:flex; align-items:center; gap:12px; margin-left:auto;">
+                <span style="font-size:0.82rem; color:var(--gold);" id="staffName">Staff Portal</span>
+                <a href="index.html" class="btn btn-outline nav-cta" style="font-size:0.78rem;" onclick="localStorage.removeItem('mm_session')">Sign Out</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-layout" id="dashLayout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3 style="letter-spacing: 2px;">MM // SYS.CTRL</h3>
+                <p style="text-transform: uppercase; letter-spacing: 1px; font-size: 0.65rem;">Authorized Personnel Only</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="active" data-panel="overview" onclick="showPanel('overview')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    Overview
+                </a>
+                <a href="#" data-panel="cars" onclick="showPanel('cars')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99z"/></svg>
+                    Car Management
+                </a>
+                <a href="#" data-panel="bookings" onclick="showPanel('bookings')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    Bookings
+                </a>
+                <a href="#" data-panel="invoices" onclick="showPanel('invoices')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    Invoices
+                </a>
+                <div class="sidebar-divider"></div>
+                <a href="index.html" style="color:var(--text-muted);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    Back to Website
+                </a>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="dashboard-main">
+
+            <!-- ===== OVERVIEW PANEL ===== -->
+            <div class="dash-panel active" id="panel-overview">
+                <div class="dash-header">
+                    <h1>Dashboard Overview</h1>
+                    <span style="font-size:0.82rem; color:var(--text-muted);" id="currentDate"></span>
+                </div>
+                <div class="dash-stats" id="dashStats">
+                    <div class="stat-card">
+                        <div class="stat-label">FLEET_TOTAL</div>
+                        <div class="stat-value" id="statCars">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">RSV_ACTIVE</div>
+                        <div class="stat-value accent" id="statBookings">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">INV_ISSUED</div>
+                        <div class="stat-value gold" id="statInvoices">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">STS_AVAILABLE</div>
+                        <div class="stat-value" id="statAvailable">0</div>
+                    </div>
+                </div>
+
+                <div class="panel-header">
+                    <h2>Recent Activity</h2>
+                </div>
+                <div id="recentActivity">
+                    <div class="empty-state">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                        <h3>Welcome to the Dashboard</h3>
+                        <p>Start by adding cars to the system using Car Management.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CAR MANAGEMENT PANEL ===== -->
+            <div class="dash-panel" id="panel-cars">
+                <div class="panel-header">
+                    <h2>// ASSET_MANAGEMENT</h2>
+                    <button class="btn btn-primary" onclick="openModal('addCar')" style="font-size:0.75rem;">+ REGISTER_ASSET</button>
+                </div>
+                <div id="carsTableContainer" class="data-table-container">
+                    <table class="data-table" id="carsTable">
+                        <thead><tr>
+                            <th>ID</th><th>Make & Model</th><th>Year</th><th>Colour</th><th>VIN</th><th>Status</th><th>Actions</th>
+                        </tr></thead>
+                        <tbody id="carsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ===== BOOKINGS PANEL ===== -->
+            <div class="dash-panel" id="panel-bookings">
+                <div class="panel-header">
+                    <h2>// RESERVATION_SYSTEM</h2>
+                    <button class="btn btn-primary" onclick="openModal('addBooking')" style="font-size:0.75rem;">+ NEW_RESERVATION</button>
+                </div>
+                <div id="bookingsTableContainer" class="data-table-container">
+                    <table class="data-table" id="bookingsTable">
+                        <thead><tr>
+                            <th>Booking #</th><th>Customer</th><th>Car</th><th>Date</th><th>Status</th><th>Actions</th>
+                        </tr></thead>
+                        <tbody id="bookingsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ===== INVOICES PANEL ===== -->
+            <div class="dash-panel" id="panel-invoices">
+                <div class="panel-header">
+                    <h2>// FINANCIAL_RECORDS</h2>
+                    <button class="btn btn-primary" onclick="openModal('addInvoice')" style="font-size:0.75rem;">+ ISSUE_INVOICE</button>
+                </div>
+                <div id="invoicesTableContainer" class="data-table-container">
+                    <table class="data-table" id="invoicesTable">
+                        <thead><tr>
+                            <th>Invoice #</th><th>Customer</th><th>Description</th><th>Amount</th><th>Status</th><th>Actions</th>
+                        </tr></thead>
+                        <tbody id="invoicesTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ===== MODALS ===== -->
+
+    <!-- Add Car Modal -->
+    <div class="modal-overlay" id="modal-addCar">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('addCar')">&times;</button>
+            <h2 style="font-family: var(--font-body); letter-spacing: 2px;">// REGISTER_NEW_ASSET</h2>
+            <form class="dash-form" id="addCarForm">
+                <div class="form-row">
+                    <div class="form-group"><label>Make</label><input type="text" id="carMake" placeholder="e.g. Mercedes-Benz" required></div>
+                    <div class="form-group"><label>Model</label><input type="text" id="carModel" placeholder="e.g. C-Class" required></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Year</label><input type="number" id="carYear" placeholder="2024" required></div>
+                    <div class="form-group"><label>Colour</label><input type="text" id="carColour" placeholder="e.g. Black" required></div>
+                </div>
+                <div class="form-group"><label>VIN Number</label><input type="text" id="carVin" placeholder="Vehicle Identification Number"></div>
+                <div class="form-row">
+                    <div class="form-group"><label>Mileage (km)</label><input type="number" id="carMileage" placeholder="e.g. 15000"></div>
+                    <div class="form-group"><label>Price (ZAR)</label><input type="text" id="carPrice" placeholder="POA or amount"></div>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="carStatus">
+                        <option value="available">Available</option>
+                        <option value="booked">Booked</option>
+                        <option value="sold">Sold</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Notes</label><textarea id="carNotes" placeholder="Any additional notes..."></textarea></div>
+                <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;margin-top:12px;">Save Car</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Booking Modal -->
+    <div class="modal-overlay" id="modal-addBooking">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('addBooking')">&times;</button>
+            <h2 style="font-family: var(--font-body); letter-spacing: 2px;">// CREATE_RESERVATION</h2>
+            <form class="dash-form" id="addBookingForm">
+                <div class="form-group"><label>Customer Name</label><input type="text" id="bookCustomer" placeholder="Full name" required></div>
+                <div class="form-group"><label>Customer Phone</label><input type="tel" id="bookPhone" placeholder="+27 (011) 555 1234" required></div>
+                <div class="form-group"><label>Customer Email</label><input type="email" id="bookEmail" placeholder="email@example.com"></div>
+                <div class="form-group">
+                    <label>Select Car</label>
+                    <select id="bookCar" required><option value="">Choose a car...</option></select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Booking Date</label><input type="date" id="bookDate" required></div>
+                    <div class="form-group">
+                        <label>Booking Type</label>
+                        <select id="bookType">
+                            <option value="test-drive">Test Drive</option>
+                            <option value="reservation">Reservation</option>
+                            <option value="purchase">Purchase</option>
+                            <option value="service">Service</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group"><label>Notes</label><textarea id="bookNotes" placeholder="Any special requests..."></textarea></div>
+                <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;margin-top:12px;">Create Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Generate Invoice Modal -->
+    <div class="modal-overlay" id="modal-addInvoice">
+        <div class="modal-box" style="max-width: 800px;">
+            <button class="modal-close" onclick="closeModal('addInvoice')">&times;</button>
+            <h2 style="font-family: var(--font-body); letter-spacing: 2px;">Create New Invoice</h2>
+            <form class="dash-form" id="addInvoiceForm">
+                
+                <div class="form-section">
+                    <div class="form-section-title">Invoice Details</div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Invoice #</label><input type="text" id="invNumber" readonly style="background: rgba(255,255,255,0.05); color: #888;"></div>
+                        <div class="form-group"><label>Invoice Date</label><input type="date" id="invDate" required></div>
+                        <div class="form-group"><label>Due Date</label><input type="date" id="invDueDate" required></div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="form-section-title">Customer Info</div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Full Name</label><input type="text" id="invCustomer" placeholder="Name" required></div>
+                        <div class="form-group"><label>Email</label><input type="email" id="invEmail" placeholder="email@example.com"></div>
+                        <div class="form-group"><label>Phone</label><input type="tel" id="invPhone" placeholder="+27..."></div>
+                    </div>
+                    <div class="form-group"><label>Physical Address</label><input type="text" id="invAddress" placeholder="Billing address..."></div>
+                </div>
+
+                <div class="form-section">
+                    <div class="form-section-title">Vehicle Specs (Optional)</div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Make</label><select id="invVehicleMake" class="dash-input"><option value="">Select Make</option></select></div>
+                        <div class="form-group"><label>Model</label><input type="text" id="invVehicleModel" placeholder="e.g. 320i"></div>
+                        <div class="form-group"><label>Year</label><input type="number" id="invVehicleYear" placeholder="2020"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>License Plate</label><input type="text" id="invVehiclePlate" placeholder="ABC 123 GP"></div>
+                        <div class="form-group"><label>VIN Number</label><input type="text" id="invVehicleVin" placeholder="17-character VIN"></div>
+                        <div class="form-group"><label>Mileage (km)</label><input type="number" id="invVehicleMileage" placeholder="105000"></div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="form-section-title">Line Items</div>
+                    <div id="invoiceItemsContainer">
+                        <!-- Dynamic rows injected here via JS -->
+                    </div>
+                    <button type="button" class="btn btn-outline" onclick="addInvoiceItem()" style="font-size: 0.75rem; margin-top: 12px;">+ Add Item</button>
+                    
+                    <div class="totals-section">
+                        <div class="totals-row"><span>Subtotal:</span> <span id="invDisplaySubtotal">R0.00</span></div>
+                        <div class="totals-row"><span>VAT (15%):</span> <span id="invDisplayVat">R0.00</span></div>
+                        <div class="totals-row grand-total"><span>Grand Total:</span> <span id="invDisplayTotal">R0.00</span></div>
+                    </div>
+                    
+                    <input type="hidden" id="invCalculatedSubtotal" value="0">
+                    <input type="hidden" id="invCalculatedVat" value="0">
+                    <input type="hidden" id="invCalculatedTotal" value="0">
+                </div>
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="invStatus">
+                        <option value="pending">Pending</option>
+                        <option value="paid">Paid</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Notes</label><textarea id="invNotes" placeholder="Payment terms, bank details..."></textarea></div>
+                
+                <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;margin-top:12px;">Generate Invoice</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Invoice Preview Modal -->
+    <div class="modal-overlay" id="modal-invoicePreview">
+        <div class="modal-box" style="max-width: 700px; padding: 0;">
+            <button class="modal-close" onclick="closeModal('invoicePreview')" style="z-index:10;">&times;</button>
+            <div class="invoice-preview" id="invoicePreviewContent"></div>
+            <div style="padding: 16px 32px 24px; display:flex; gap:12px; justify-content:flex-end;">
+                <button class="btn btn-outline" onclick="closeModal('invoicePreview')">Close</button>
+                <button class="btn btn-primary" onclick="printInvoice()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <datalist id="car-parts-list">
+        <optgroup label="Labour & Services">
+            <option value="Hourly Labour Rate">
+            <option value="Minor Service">
+            <option value="Major Service">
+            <option value="Diagnostic Fee">
+            <option value="Vehicle Inspection">
+        </optgroup>
+        <optgroup label="Fluids & Lubricants">
+            <option value="Engine Oil (5W-30)">
+            <option value="Engine Oil (10W-40)">
+            <option value="Brake Fluid (DOT 4)">
+            <option value="Coolant / Antifreeze">
+            <option value="Transmission Fluid">
+            <option value="Power Steering Fluid">
+            <option value="Windshield Washer Fluid">
+        </optgroup>
+        <optgroup label="Filters">
+            <option value="Oil Filter">
+            <option value="Air Filter">
+            <option value="Cabin / A/C Filter">
+            <option value="Fuel Filter">
+        </optgroup>
+        <optgroup label="Brakes">
+            <option value="Front Brake Pads">
+            <option value="Rear Brake Pads">
+            <option value="Front Brake Discs / Rotors">
+            <option value="Rear Brake Discs / Rotors">
+            <option value="Brake Wear Sensor">
+        </optgroup>
+        <optgroup label="Engine & Ignition">
+            <option value="Spark Plugs">
+            <option value="Glow Plugs (Diesel)">
+            <option value="Ignition Coil">
+            <option value="Timing Belt Kit">
+            <option value="Water Pump">
+            <option value="V-Belt / Fan Belt">
+        </optgroup>
+        <optgroup label="Electrical & Battery">
+            <option value="Car Battery (Standard)">
+            <option value="Car Battery (AGM / Start-Stop)">
+            <option value="Alternator">
+            <option value="Starter Motor">
+            <option value="Headlight Bulb (H7, H4, etc.)">
+            <option value="Wiper Blades">
+        </optgroup>
+        <optgroup label="Suspension & Wheels">
+            <option value="Shock Absorbers (Front)">
+            <option value="Shock Absorbers (Rear)">
+            <option value="Wheel Alignment">
+            <option value="Wheel Balancing">
+            <option value="Control Arm">
+            <option value="Tie Rod End">
+        </optgroup>
+    </datalist>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
